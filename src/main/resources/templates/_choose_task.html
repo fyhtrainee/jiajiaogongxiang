@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>菜鸟教程</title>
+</head>
+<body>
+
+<!--<form action="/toIndex">-->
+<!--    <input th:text="${orders.size()}" type="text"">-->
+
+<!--</form>-->
+
+<!--<table border="1" cellspacing="0">-->
+<!--    <tr>-->
+<!--        <th>编号</th>-->
+<!--        <th>姓名</th>-->
+<!--        <th>密码</th>-->
+<!--    </tr>-->
+<!--    <tr th:each="user, iterStat:${users}">-->
+<!--        <td th:text="${user.id}"></td>-->
+<!--        <td th:text="${user.username}"></td>-->
+<!--        <td th:text="${user.password}"></td>-->
+<!--    </tr>-->
+<!--</table>-->
+
+<h3>您目前的订单如下</h3>
+<table border="1" cellspacing="0">
+  <tr>
+    <td>任务描述</td>
+    <td>状态</td>
+    <td>任务操作</td>
+  </tr>
+  <tr th:each="task, iter:${tasks}">
+    <td> <p th:text="${task.comment}"></p>
+    <td>未确认</td>
+    <td>
+      <form th:action="@{/task/task}">
+        <input th:value="${task.state}" type="hidden" name="state">
+        <input th:value="${task.id}" type="hidden" name="id">
+        <input th:value="${task.ct_id}" type="hidden" name="ct_id">
+        <button type="submit" th:text="查看订单"></button>
+      </form>
+    </td>
+    <!--        <td th:text="${user.username}"></td>-->
+    <!--        <td th:text="${user.password}"></td>-->
+  </tr>
+  <p th:text="${msg}"></p>
+</table>
+
+
+<!--...<p th:text="${#dates.format(time,'yyyy-MM-dd hh:mm:ss')}"></p>-->
+
+</body>
+</html>

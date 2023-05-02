@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="/order/captcha_OrderStart">
+    <p>订单号为 : <input name="order_id" type="text" readonly th:value="${order_id}"></p>
+    <p> 请输入验证码： <input name="captcha" type="text"> </p>
+    <p> <button type="submit" >提交</button></p>
+
+    <p th:text="${msg}"></p>
+</form>
+
+</body>
+</html>

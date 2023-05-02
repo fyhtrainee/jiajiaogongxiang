@@ -1,0 +1,185 @@
+<html><head>
+    <meta charset="UTF-8">
+    <title>订单展示页面</title>
+    <style>
+        /* 导航栏样式 */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            font-size: 18px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+            transition: all 0.3s ease-out;
+        }
+        nav a:hover {
+            color: #ffcd00;
+        }
+        /* 订单列表样式 */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            margin-top: 50px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-weight: normal;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        td:last-child {
+            text-align: right;
+        }
+        .order-status {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .order-status--pending {
+            color: #ffcd00;
+            background-color: #fff;
+            border: 2px solid #ffcd00;
+        }
+        .order-status--shipped {
+            color: #0080ff;
+            background-color: #fff;
+            border: 2px solid #0080ff;
+        }
+        .order-status--completed {
+            color: #00b300;
+            background-color: #fff;
+            border: 2px solid #00b300;
+        }
+
+        /* 搜索栏样式 */
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .search-bar input[type="text"] {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            max-width: 100%;
+        }
+        .search-bar input[type="submit"] {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #333;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .search-bar input[type="submit"]:hover {
+            background-color: #ffcd00;
+        }
+
+        /* 用户信息样式 */
+        .user-info {
+            text-align: right;
+            margin-top: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* 侧边栏样式 */
+        .sidebar {
+            width: 200px;
+            background-color: #f2f2f2;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            margin-right: 20px;
+        }
+        .sidebar h2 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .sidebar p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .my-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .my-button:hover {
+            background-color: #ffcd00;
+            color: #333;
+        }
+
+    </style>
+</head>
+<body>
+<!-- 导航栏 -->
+<nav>
+    <span>LOGO</span>
+    <div>
+        <a href="/toIndex">首页</a>
+        <a href="/order/toChoose_order">订单操作</a>
+        <a th:if="${session.get('role') eq 'student'}" href="/order/toCreatOrder">创建订单</a>
+        <a href="/task/myTasks">我的发布任务</a>
+        <a href="/task/toCreateTask">发布任务</a>
+        <a href="/login/loginOut">注销</a>
+    </div>
+</nav>
+<!-- 搜索栏 -->
+<!-- 侧边栏 -->
+<div class="sidebar">
+    <h2 th:text="'您好' + ${session.user.name} + ${session.user.role}"></h2>
+    <h2 th:text="'用户名:' + ${session.user.userId}"></h2>
+    <h2 th:text="'绑定电话号码 : ' + ${session.user.phoneNb}"></h2>
+    <h2 th:text="${reason}"></h2>
+</div>
+<!-- 订单列表 -->
+<table>
+
+    <thead>
+    <tr>
+        <th>您的验证码!!请牢记</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${msg}" ></td>
+        <td><a class="my-button" href="/toIndex">返回主页</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

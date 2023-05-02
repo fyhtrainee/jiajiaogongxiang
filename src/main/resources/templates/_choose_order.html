@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>菜鸟教程</title>
+</head>
+<body>
+
+<!--<form action="/toIndex">-->
+<!--    <input th:text="${orders.size()}" type="text"">-->
+
+<!--</form>-->
+
+<!--<table border="1" cellspacing="0">-->
+<!--    <tr>-->
+<!--        <th>编号</th>-->
+<!--        <th>姓名</th>-->
+<!--        <th>密码</th>-->
+<!--    </tr>-->
+<!--    <tr th:each="user, iterStat:${users}">-->
+<!--        <td th:text="${user.id}"></td>-->
+<!--        <td th:text="${user.username}"></td>-->
+<!--        <td th:text="${user.password}"></td>-->
+<!--    </tr>-->
+<!--</table>-->
+
+<h3>您目前的订单如下</h3>
+<table border="1" cellspacing="0">
+    <tr>
+        <td>订单创建时间</td>
+        <td>学员id</td>
+        <td>状态</td>
+        <td>订单操作</td>
+    </tr>
+    <tr th:each="order, iter:${orders}">
+        <td th:text="${order.ct_time}"></td>
+        <td th:text="${order.st_id}"></td>
+        <td th:if="${order.st_time eq null }">未开始</td>
+        <td th:if="${order.ed_time eq null and order.st_time != null }">已开始</td>
+        <td th:if="${order.ed_time != null }">已结束</td>
+        <td th:if="${order.st_time eq null }" > <a  th:href="@{'/order/choose_OrderStart?id=' + ${order.id}} " th:text="开始"> </a> </td>
+        <td th:if="${order.ed_time eq null and order.st_time != null}"> <a th:href="@{'/order/endOrder?id=' + ${order.id}}" th:text="结束订单"> </a> </td>
+        <td th:if="${order.ed_time != null }">已结束无法操作</td>
+<!--        <td th:text="${user.username}"></td>-->
+<!--        <td th:text="${user.password}"></td>-->
+    </tr>
+    <p th:text="${msg}"></p>
+</table>
+
+
+<!--...<p th:text="${#dates.format(time,'yyyy-MM-dd hh:mm:ss')}"></p>-->
+
+</body>
+</html>

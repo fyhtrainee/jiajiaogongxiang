@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>发布任务</title>
+    <style>
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      font-size: 18px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+      transition: all 0.3s ease-out;
+    }
+    nav a:hover {
+      color: #ffcd00;
+    }
+      /* 布局样式 */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+        background-color: #f6f7fb;
+        /* display: flex; */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      
+      form {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      }
+      
+      textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+        margin-bottom: 20px;
+        border: none;
+        outline: none;
+        resize: none;
+        border-radius: 5px;
+        box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+      }
+      
+      button {
+        font-size: 20px;
+        font-weight: bold;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4caf50;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+      
+      button:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <nav>
+      <span>LOGO</span>
+      <div>
+        <a href="/toIndex">首页</a>
+        <a href="/order/toChoose_order">订单操作</a>
+        <a th:if="${session.get('role') eq 'student'}" href="/order/toCreatOrder">创建订单</a>
+        <a href="/task/myTasks">我的发布任务</a>
+        <a href="/task/toCreateTask">发布任务</a>
+        <a href="/login/loginOut">注销</a>
+      </div>
+    </nav>
+    <h1>发布任务</h1>
+    <form action="/task/createTask" method="post">
+      <label for="task">任务描述：</label><br>
+      <textarea id="task" name="comment" rows="10" cols="50"></textarea><br>
+      <button type="submit">发布任务</button>
+    </form>
+  </body>
+</html>

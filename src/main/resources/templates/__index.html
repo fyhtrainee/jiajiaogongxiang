@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>这是个首页</h1>
+<p th:text="'您好' + ${session.user.name}"></p>
+
+<a href="/order/toChoose_order">订单操作</a>
+<a th:if="${session.get('role') eq 'student'}" href="/order/toCreatOrder">创建订单</a>
+<a href="/login/loginOut">注销</a>
+<a href="/task/toCreateTask">发布任务</a>
+<a href="/task/myTasks">我的发布任务</a>
+
+
+<table border="1" cellspacing="0">
+    <tr>
+        <td>任务描述</td>
+        <td>发布人的身份</td>
+        <td>创建时间</td>
+        <td>任务状态</td>
+        <td>任务操作</td>
+    </tr>
+    <tr th:each="task , iter:${#servletContext.getAttribute('tasks')}">
+        <td> <p th:text="${task.comment}"></p>
+        <td> <p th:text="${task.ct_role}"></p></td>
+        <td> <p th:text="${task.ct_time}"></p></td>
+        <td>
+            <p th:if="${task.take_id eq null}" th:text="未结束"></p>
+            <p th:unless="${task.take_id eq null}" th:text="已结束"></p>
+        </td>
+        <td>
+            <form th:action="@{/task/takeTask}">
+                <input th:if="${task.take_id eq null}" th:value="${task.id}" type="hidden" name="id">
+                <button th:if="${task.take_id eq null}" type="submit" th:text="申请任务"></button>
+            </form>
+        </td>
+        <!--        <td th:text="${user.username}"></td>-->
+        <!--        <td th:text="${user.password}"></td>-->
+    </tr>
+    <p th:text="${msg}"></p>
+</table>
+
+<p th:text="${order_msg}"></p>
+
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="" th:href="@{../styles/common.css}" >
+    <link rel="stylesheet" th:href="@{../styles/page-account.css}">
+    <link rel="icon" href="favicon.ico">
+</head>
+
+<body>
+<div class="login-box">
+    <!--head-->
+    <div class="py-container logoArea">
+        <a href="/login/toLogin" class="logo"></a>
+    </div>
+    <!--loginArea-->
+    <div class="loginArea">
+        <div class="py-container login">
+            <div class="loginform">
+                <ul class="sui-nav nav-tabs tab-wraped">
+                    <li><a href="#index" data-toggle="tab">扫描登录</a></li>
+                    <li class="active"><a href="#profile" data-toggle="tab">账户登录</a></li>
+                </ul>
+                <div class="tab-content tab-wraped">
+                    <div id="index" class="tab-pane">
+                        <p>啦啦啦</p>
+                    </div>
+                    <div id="profile" class="tab-pane active">
+                        <form class="sui-form" action="/login/UserLogin" method="post">
+                            <div class="input-prepend">
+                                <span class="add-on loginname"></span>
+                                <input type="text" name="user_id" class="span2 input-xfat" placeholder="用户名">
+                            </div>
+                            <div class="input-prepend">
+                                <span class="add-on loginpwd"></span>
+                                <input type="password" name="pwd" class="span2 input-xfat" placeholder="请输入密码">
+                            </div>
+                            <div class="setting">
+                                <label class="checkbox inline"><input name="m1" type="checkbox" checked> 自动登录</label>
+                                <span class="forget">忘记密码？</span>
+                            </div>
+                            <div class="logined">
+                                <button class="sui-btn btn-block btn-xlarge btn-danger" type="submit" >登&nbsp;&nbsp;录</button>
+                            </div>
+                            <p th:text="${msg}"></p>
+                        </form>
+
+                        <div class="registration">
+                            <ul>
+                                <li>
+                                    <a href="#"></a>
+                                </li>
+                                <li>
+                                    <a href="#"></a>
+                                </li>
+                                <li>
+                                    <a href="#"></a>
+                                </li>
+                                <li>
+                                    <a href="#"></a>
+                                </li>
+                            </ul>
+
+                            <a href="/register/toRegister">立即注册</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--foot-->
+</div>
+</body>
+
+</html>

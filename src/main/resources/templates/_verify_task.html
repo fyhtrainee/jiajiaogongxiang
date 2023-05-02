@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>菜鸟教程</title>
+</head>
+<body>
+
+<!--<form action="/toIndex">-->
+<!--    <input th:text="${orders.size()}" type="text"">-->
+
+<!--</form>-->
+
+<!--<table border="1" cellspacing="0">-->
+<!--    <tr>-->
+<!--        <th>编号</th>-->
+<!--        <th>姓名</th>-->
+<!--        <th>密码</th>-->
+<!--    </tr>-->
+<!--    <tr th:each="user, iterStat:${users}">-->
+<!--        <td th:text="${user.id}"></td>-->
+<!--        <td th:text="${user.username}"></td>-->
+<!--        <td th:text="${user.password}"></td>-->
+<!--    </tr>-->
+<!--</table>-->
+
+<h3>您目前待确认的任务如下</h3>
+<table border="1" cellspacing="0">
+    <tr>
+        <td>姓名</td>
+        <td>性别</td>
+        <td>电话</td>
+        <td>确认该用户</td>
+    </tr>
+    <tr th:each="user, iter:${userList}">
+        <td th:unless="${user.id eq null }" th:text="${user.name}"> </td>
+        <td th:unless="${user.id eq null }" th:text="${user.gender}"></td>
+        <td th:unless="${user.id eq null }" th:text="${user.phoneNb}"></td>
+        <td th:unless="${user.id eq null }">
+            <form action="/task/endTask">
+                <input th:value="${task_id}" type="hidden" name="task_id">
+                <input th:value="${user.id}" type="hidden" name="user_id">
+                <button  type="submit" th:text="提交"></button>
+            </form>
+        </td>
+        <!--        <td th:text="${user.username}"></td>-->
+        <!--        <td th:text="${user.password}"></td>-->
+    </tr>
+    <p th:text="${msg}"></p>
+</table>
+
+
+<!--...<p th:text="${#dates.format(time,'yyyy-MM-dd hh:mm:ss')}"></p>-->
+
+</body>
+</html>

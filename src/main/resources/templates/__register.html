@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<fieldset>
+<form action="/register/register" >
+    <p>请输入用户名：<input name="user_id" type="text"></p>
+    <p>请输入密码：<input name="pwd" type="password"></p>
+    <p>请输入姓名：<input name="name" type="text"></p>
+    <p>请输入电话号码：<input name="phone_nb" type="text"></p>
+
+        <legend>选择您的性别:</legend>
+        <div>
+            <input type="radio" id="dewey" name="gender" value="男">
+            <label for="dewey">男</label>
+        </div>
+        <div>
+            <input type="radio" id="louie" name="gender" value="女">
+            <label for="louie">女</label>
+        </div>
+    <button type="submit" value="提交">提交</button>
+</form>
+</fieldset>
+<p th:text="${msg}"></p>
+
+</body>
+</html>
